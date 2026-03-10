@@ -3,7 +3,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from agent.utils.system_prompt import CHAT_AGENT_SYSTEM_PROMPT
 from langchain.agents import create_agent
 from dotenv import load_dotenv
-from agent.utils.tools import multiply_numbers
+from agent.utils.tools import add_numbers, multiply_numbers, result_formatter
 import os
 
 load_dotenv()
@@ -25,9 +25,9 @@ class LLMClient:
             model=model,
             system_prompt=CHAT_AGENT_SYSTEM_PROMPT,
             checkpointer=InMemorySaver(),
-            tools=[multiply_numbers]
+            tools=[multiply_numbers, add_numbers, result_formatter]
         )
-
+        
 
 llm_client = LLMClient()
 
